@@ -20,12 +20,25 @@ class App extends Component {
     this.setState({ items: [] });
   }
 
+  add = (item) => {
+    let newItems = [...this.state.items, item];
+    this.setState({ items: newItems });
+  }
+
+  delete = (index) => {
+    let currentItems = [...this.state.items];
+    if(index >= 0){
+      currentItems.splice(index, 1);
+      this.setState({ items: currentItems });
+    }
+  }
+
   render() {
     return (
       <div className="App">
         <Header />
-        <ToDoList items={this.state.items} />
-        <Controls clear={this.clear} />
+        <ToDoList items={this.state.items} delete={this.delete} />
+        <Controls clear={this.clear} add={this.add} />
         <Counter items={this.state.items} />
       </div>
     );
