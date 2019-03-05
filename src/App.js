@@ -1,25 +1,32 @@
+// Third part modules
 import React, { Component } from 'react';
-import logo from './logo.svg';
+
+// Resources & Custom Components
 import './App.css';
+import Controls from './todolist/Controls';
+import Counter from './todolist/Counter';
+import Header from './Header';
+import ToDoList from './todolist/ToDoList';
 
 class App extends Component {
+  constructor(){
+    super();
+    this.state = {
+      items: ['Walk the Dog', 'Wash the Clothes', 'Mow the Lawn']
+    }
+  }
+
+  clear = () => {
+    this.setState({ items: [] });
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Header />
+        <ToDoList items={this.state.items} />
+        <Controls clear={this.clear} />
+        <Counter items={this.state.items} />
       </div>
     );
   }
