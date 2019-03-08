@@ -23,7 +23,10 @@ class Controls extends Component {
       this.setState({ newItem: '', error: '' });
     }
     else {
-      this.setState({ error: 'Please enter some text' });
+      this.setState({ error: 'Please enter some text' }, () => {
+        console.log(this.state.error); // YES
+      });
+      console.log(this.state.error); // NO
     }
   }
 
